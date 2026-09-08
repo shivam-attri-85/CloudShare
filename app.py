@@ -6,7 +6,7 @@ from backend.routes import api
 app = Flask(__name__)
 
 CORS(app)
-
+#Made By Shivam Kumar 
 app.register_blueprint(api)
 
 
