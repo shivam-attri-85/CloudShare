@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudShare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>☁️ CloudShare</h1>
+        <p>Fast. Simple. Private.</p>
+    </header>
+
+    <main>
+
+        <div class="upload-box">
+            <h2>Upload a file</h2>
+            <p>Select a file and upload it to your CloudShare server.</p>
+
+            <input type="file" id="fileInput">
+
+            <button onclick="uploadFile()">
+                Upload File
+            </button>
+
+            <div id="status"></div>
+        </div>
+
+        <div class="files-box">
+            <div class="files-header">
+                <h2>Your Files</h2>
+                <button onclick="loadFiles()">Refresh</button>
+            </div>
+
+            <div id="fileList">
+                Loading...
+            </div>
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+async function uploadFile() {
+
+    const input = document.getElementById("fileInput");
+    const status = document.getElementById("status");
+
+    if (!input.files.length) {
+        status.innerText = "Please select a file.";
+        return;
+    }
+
+    const file = input.files[0];
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    status.innerText = "Uploading...";
+
+    try {
+
+        const response = await fetch("/upload", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            status.innerText = "✅ " + data.message;
+            input.value = "";
+            loadFiles();
+        } else {
+            status.innerText = "❌ " + data.message;
+        }
+
+    } catch (error) {
+        status.innerText = "❌ Upload failed.";
+    }
+}
+
+
+async function loadFiles() {
+
+    const fileList = document.getElementById("fileList");
+
+    try {
+
+        const response = await fetch("/files");
+        const data = await response.json();
+
+        if (!data.files.length) {
+            fileList.innerHTML = "<p>No files uploaded yet.</p>";
+            return;
+        }
+
+        fileList.innerHTML = "";
+
+        data.files.forEach(file => {
+
+            const div = document.createElement("div");
+            div.className = "file-item";
+
+            div.innerHTML = `
+                <span>📄 ${file}</span>
+                <a href="/download/${encodeURIComponent(file)}">
+                    Download
+                </a>
+            `;
+
+            fileList.appendChild(div);
+        });
+
+    } catch (error) {
+        fileList.innerHTML = "<p>Unable to load files.</p>";
+    }
+}
+
+loadFiles();
+</script>
+
+</body>
+</html>
