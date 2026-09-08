@@ -22,6 +22,24 @@ CloudShare is a lightweight web application for uploading, listing, downloading,
 - AWS EC2 with Ubuntu/Linux
 - systemd for background service management
 
+## Screenshots
+
+### AWS EC2 Deployment
+
+<img src="images/Screenshot%202026-09-08%20204407.png" alt="CloudShare EC2 instance running" width="900">
+
+### CloudShare Files in Amazon S3
+
+<img src="images/Screenshot%202026-09-09%20000343.png" alt="CloudShare files stored in an S3 bucket" width="900">
+
+### API Response
+
+<img src="images/Screenshot%202026-09-08%20212302.png" alt="CloudShare API success response" width="900">
+
+### Health Check
+
+<img src="images/Screenshot%202026-09-09%20000427.png" alt="CloudShare health check response" width="900">
+
 ## Project Structure
 
 ```text
