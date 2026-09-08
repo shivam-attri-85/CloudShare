@@ -40,6 +40,26 @@ CloudShare is a lightweight web application for uploading, listing, downloading,
 
 <img src="images/Screenshot%202026-09-09%20000427.png" alt="CloudShare health check response" width="900">
 
+## How It Works
+
+### 1. Upload and Download Files
+
+Choose a file in the CloudShare interface and select **Upload File**. Uploaded files appear in the file list with a **Download** button.
+
+<img src="images/Screenshot%202026-09-09%20000300.png" alt="CloudShare upload and download interface" width="900">
+
+### 2. Verify Uploads Through the API
+
+The API can upload a file and return the current file list:
+
+<img src="images/Screenshot%202026-09-08%20220347.png" alt="CloudShare upload and files API responses" width="900">
+
+### 3. Allow Required EC2 Traffic
+
+The EC2 security group must allow the application port, `5000`, in its inbound rules. Restrict SSH access to trusted IP addresses.
+
+<img src="images/Screenshot%202026-09-08%20203752.png" alt="CloudShare EC2 inbound security group rules" width="900">
+
 ## Project Structure
 
 ```text
