@@ -48,6 +48,10 @@ Choose a file in the CloudShare interface and select **Upload File**. Uploaded f
 
 <img src="images/Screenshot%202026-09-09%20000300.png" alt="CloudShare upload and download interface" width="900">
 
+After the upload completes, the progress bar reaches 100% and the new file is available for download.
+
+<img src="images/Screenshot%202026-09-09%20011102.png" alt="Successful CloudShare upload with downloadable files" width="900">
+
 ### 2. Verify Uploads Through the API
 
 The API can upload a file and return the current file list:
