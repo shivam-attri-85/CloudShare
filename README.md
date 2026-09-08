@@ -194,4 +194,6 @@ This project is available under the MIT License.
 
 ## Author
 
+**Shivam Kumar**
+
 CloudShare is a personal cloud file-sharing project built with Flask, JavaScript, and AWS EC2.
